@@ -98,7 +98,7 @@ def ancho_haz(Im,r,f,L):
     A2,err2 = quad(I2, 0, 2*np.pi)                   #Integral de phi de 0-2pi
     ancho = np.rad2deg(abs(A2*A1*180/np.pi))         #Se pasa a grados
     print("\t\t{0:.5f}".format(ancho))               #Se restringe a una presición de 5 decimales
-    return A2*A1*180/np.pi
+    return abs(A2*A1*180/np.pi)
 
 #Cálculo de la directividad
 def directividad(ancho):
@@ -227,7 +227,6 @@ def dipolo():
     Emax = max_E(n,Im,ra,k,H)
     x = np.linspace(0,2*np.pi,1000)               #x = tetha
     #Compo E normalizado
-    print("H:", H, "k", k, "L", L)
     r = 20*np.log10(abs((n*Im/(2*np.pi*ra))*((np.cos(k*H*np.cos(x))-np.cos(k*H))/(np.sin(x)*Emax))))
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="polar")
